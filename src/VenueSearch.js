@@ -11,7 +11,16 @@ class VenueSearch extends React.Component{
         }
     this.searchVenue = this.searchVenue.bind(this);
     }
-
+    updateVote(e){
+        var venueId= e.target.id;
+        var url="https://api.foursquare.com/v2/venues/${venueId}/select";
+        url = url.replace("${venueId}", venueId);
+        fetch(url,{
+            method:'POST'})
+        .then(res=>res.json())
+        .then(data=>{console.log(data)})
+        .catch(err=>console.log(err));
+    }
     updateParticipantName(e){    
         this.state.participants.map(p=>{
             if(p.id===e.target.id)
@@ -42,9 +51,9 @@ class VenueSearch extends React.Component{
         url = url.replace("clientId", clientId).replace("clientSecret",clientSecret).replace("${address}",this.state.searchVal);
         fetch(url)
         .then(res=>res.json())
-        .then(data=>{this.setState({results:data.response.venues})})
+        .then(data=>{this.setState({results:data.response.venues});return data;})
         .then(data=>{console.log(data)})
-        .catch(error=>{console.error(error)});    
+        .catch(error=>{console.error(error)}); 
     }
     render(){
         return(
@@ -60,10 +69,12 @@ class VenueSearch extends React.Component{
                     <table>
                         <thead>
                             <tr>
-                                <th>Participants</th>
+                                <th className="participant firstCol">Participants</th>
                                 {
                                     this.state.results.map(row=>
-                                        <th key={row.id}>{row.name}</th>
+                                        <th key={row.id}><div><a href="#">{row.name}</a></div><div>
+                                            <span className="participant firstCol">{row.categories[0].name}</span>
+                                            </div></th>
                                     )
                                 }
                             </tr>
@@ -72,10 +83,10 @@ class VenueSearch extends React.Component{
                             {
                                 this.state.participants.map(row=>
                                     <tr className="tableDataRow" key={row.id}>
-                                        <td><input type="textbox" id={row.id} onChange={e=>this.updateParticipantName}></input></td>
-                                        <td><input type="radio" name={row.id}></input></td>
-                                        <td><input type="radio" name={row.id}></input></td>
-                                        <td><input type="radio" name={row.id}></input></td>                                           
+                                        <td className="firstCol"><input type="text" id={row.id} onChange={e=>this.updateParticipantName}></input></td>
+                                        <td className="otherCol"><input type="radio" name={row.id} id={this.state.results[0].id} onChange={e=>this.updateVote(e)}></input></td>
+                                        <td className="otherCol"><input type="radio" name={row.id} id={this.state.results[1].id} onChange={e=>this.updateVote(e)}></input></td>
+                                        <td className="otherCol"><input type="radio" name={row.id} id={this.state.results[2].id} onChange={e=>this.updateVote(e)}></input></td>                                           
                                     </tr>
                                 )
                             }                                

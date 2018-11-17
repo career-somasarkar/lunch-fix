@@ -4,7 +4,8 @@ margin: 20px;
 
 .col1{
 	width: 200px;
-	float: left;
+    float: left;
+    margin-right: 20px;
 }
 .col2{
 	width: 400px;
@@ -25,23 +26,47 @@ margin: 20px;
 }
 
 input[type="button"]{
-    background-color: blue;
+    background-color:#544bb4;
     border-radius: 15px;
     height: 30px;
     min-width: 100px;
-    color: white;
+    color: #fbffff;
+    border-color: #e3e3e3;
 }
-
+input[type="text"]{
+    border-radius: 5px;
+    border-color: #e3e3e3;
+    color: #717171;
+    display: block;
+    height: 20px;
+    padding: 2px;
+    width: 100%;
+}
+.participant{
+    color: #a7a7a7;
+}
+.firstCol{
+    background-color: #ffffff;
+}
 table {
     border-collapse: collapse;
     text-align: left; 
     width: 100%;
+    margin: 10px 0px;
+    background-color: #ffffff;
 }
 
 .tableDataRow {
-    border: 1px solid lightgray;
+    border: 1px solid #e9e9e9;
 }
 th, td, tr{
     padding: 10px;
-    background-color: wheat;
+    color: #fbf5f5;
+    border: 1px solid #e1e1e1;
+}
+.otherCol{
+    background-color: #fbf5f5;    
+}
+a{
+    color: #332c6a;
 }
