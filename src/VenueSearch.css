@@ -1,0 +1,47 @@
+.rootDiv{
+margin: 20px;
+}
+
+.col1{
+	width: 200px;
+	float: left;
+}
+.col2{
+	width: 400px;
+	float: left;
+}
+
+.clearFloat{
+	clear: float;
+}
+.row{
+	margin: 5px;
+}
+
+.row:after{
+	content: " ";
+	clear: both;
+	display: table;
+}
+
+input[type="button"]{
+    background-color: blue;
+    border-radius: 15px;
+    height: 30px;
+    min-width: 100px;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left; 
+    width: 100%;
+}
+
+.tableDataRow {
+    border: 1px solid lightgray;
+}
+th, td, tr{
+    padding: 10px;
+    background-color: wheat;
+}
